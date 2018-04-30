@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpackDevSer": "npx webpack-dev-server --mode development --content-base ./dist",
     "dev": "npx webpack-dev-server --mode development --content-base ./dist --config webpack.dev.config.js",
-    "build": "npx rimraf ./build/ && npx webpack --mode production --content-base ./build --config webpack.build.config.js"
+    "delete": "npx rimraf ./build/*",
+    "copy":"npx copy ./src/** ./build",
+    "build": "npm run delete && npm run copy && npx webpack --mode production --content-base ./build --config webpack.build.config.js"
+    ,
+    "testcopy":"npx copy ./src/** ",
+    "testpath": "npm run testcp ./build"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "copy": "^0.3.1",
     "express": "^4.16.3",
     "rimraf": "^2.6.2",
     "webpack": "^4.6.0",
