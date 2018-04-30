@@ -4,6 +4,13 @@ let rootPath=path.resolve(__dirname);
 
 //导入获取当前目录下所有文件名称
 const findSync=require(rootPath+'/config/common/findFileNameSync.js');
+//webpack和webpack-dev-server的部分配置
+let defaultWebpackConfig={
+    mode:'',//自动配置：development
+    devServer:{//可以配置
+        contentBase: '' //路径为：path.resolve(__dirname, 'dist')，，下面配置
+    }
+}
 //入口+出口
 let entry={},output={};
 //配置文件处理函数
@@ -42,12 +49,25 @@ function dealConfig(entryPath,type,outputPath){
     }*/
     output.path= rootPath+outputPath;//path.resolve(__dirname,'./dist'),
     output.filename='[name]';//对应entry的键，name值已经包含了后缀名
+
+
+    switch(outputPath){
+        case '/dist':
+            defaultWebpackConfig.mode='development';
+            break;
+        case '/build':
+            defaultWebpackConfig.mode='production';
+            break;
+    }
+    //默认配置
+    defaultWebpackConfig.devServer.contentBase=rootPath+outputPath;
 }
 
 //自定义配置文件
 const config={
     entry,
     output,
+    ...defaultWebpackConfig,//解构
     dealConfig
 }
 //添加

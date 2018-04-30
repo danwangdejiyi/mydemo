@@ -2,6 +2,7 @@
 const path = require('path');
 
 module.exports = {
+  //mode和devServer是默认配置，webpack.dev.config.js和webpack.build.config.js中会重写
   mode:'development',
   devServer:{//可以配置
       contentBase: path.resolve(__dirname, 'dist')

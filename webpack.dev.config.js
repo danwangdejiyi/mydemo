@@ -10,6 +10,5 @@ for(let item in dealConfig){
     }
 }
 
-//config['entry']=dealConfig.entry;
-//config['output']=dealConfig.output;
+console.log(config)
 module.exports=config;
