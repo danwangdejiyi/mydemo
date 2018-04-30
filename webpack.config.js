@@ -17,7 +17,7 @@ fileNames.forEach((item,index)=>{
       index:'./src/2018/4/tabSlideSwitch/index.js'
     }
   */
-  entry[item.slice(4,-3)]="./"+item;// \\ 第一个\是转义的作用 
+  entry[item.slice(4)]="./"+item;//item.slice(4)已经包含了文件后缀名称 .js(或者可能是其他的后缀)
 });
 /*
     @param 出口：统一出口形势
@@ -28,7 +28,7 @@ fileNames.forEach((item,index)=>{
   */
 output={
   path:rootPath+'/dist',//path.resolve(__dirname,'./dist'),
-  filename:'[name].js'//对应entry的键
+  filename:'[name]'//对应entry的键，name值已经包含了后缀名
 }
 
 
